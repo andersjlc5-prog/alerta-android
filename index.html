@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alerta Android</title>
+<style>
+body {
+  background:#100000;
+  color:white;
+  font-family:Arial;
+  text-align:center;
+  padding:35px 15px;
+}
+.alerta {
+  color:#ff2525;
+  font-size:30px;
+  font-weight:bold;
+  animation:parpadeo 1s infinite;
+}
+@keyframes parpadeo {
+  50% {opacity:.35}
+}
+.caja {
+  border:2px solid red;
+  border-radius:15px;
+  padding:25px 15px;
+  margin-top:30px;
+  background:#260000;
+}
+.barra {
+  background:#444;
+  height:18px;
+  border-radius:20px;
+  overflow:hidden;
+}
+.progreso {
+  background:red;
+  height:100%;
+  width:0%;
+}
+button {
+  background:red;
+  color:white;
+  border:0;
+  padding:14px 25px;
+  border-radius:8px;
+  font-size:17px;
+}
+</style>
+</head>
+<body>
+<div class="alerta">⚠ ¡ALERTA!</div>
+<div class="caja">
+<h2>DISPOSITIVO INFECTADO</h2>
+<p>Simulación de amenaza informática Android</p>
+<h1>☠</h1>
+<p id="estado">Esperando análisis...</p>
+<div class="barra">
+<div class="progreso" id="progreso"></div>
+</div>
+<p id="porcentaje">0%</p>
+<button onclick="iniciar()">INICIAR SIMULACIÓN</button>
+</div>
+<script>
+function iniciar() {
+let valor=0;
+let boton=document.querySelector("button");
+boton.disabled=true;
+let intervalo=setInterval(()=>{
+valor+=2;
+document.getElementById("progreso").style.width=valor+"%";
+document.getElementById("porcentaje").innerText=valor+"%";
+document.getElementById("estado").innerText="Analizando sistema (simulación)...";
+if(valor>=100){
+clearInterval(intervalo);
+document.getElementById("estado").innerText="SIMULACIÓN FINALIZADA";
+alert("Esto fue una simulación educativa. Tu dispositivo no está infectado.");
+boton.disabled=false;
+}
+},100);
+}
+</script>
+</body>
+</html>
